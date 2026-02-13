@@ -59,25 +59,19 @@ DELETE,/api/Email/Deleta-Email/{id},Remove um registro de e-mail.
 ⚙️ Exemplo de Payload (POST)
 
 {
-
   "enderecoEmail": "usuario@exemplo.com",
-  
   "assunto": "Bem-vindo!",
-
   "conteudo": "Obrigado por se cadastrar em nosso serviço."
-
 }
 
 
 ⚙️ ConfiguraçãoO comportamento do worker é controlado via appsettings.json:
 
 "WorkerConfig": {
-
     "IntervaloSegundos": 10 // O Worker consulta o banco a cada 10 segundos
 },
 
 "ConnectionStrings": {
-
     "DefaultConnection": "Data Source=Emails.db"
 }
 
@@ -88,17 +82,11 @@ Um dos principais desafios em Worker Services é acessar repositórios de banco 
 // Dentro do Worker (Singleton)
 
 using (var scope = _scopeFactory.CreateScope()) // Cria um escopo temporário
-
 {
-
     // Resolve o Serviço Scoped
- 
     var emailService = scope.ServiceProvider.GetRequiredService<IEmailService>();
-    
     // Executa a lógica de forma segura
-
     var emails = await emailService.BuscaEmailAsync();
-
 } // O escopo é descartado aqui, liberando as conexões de banco
 
 📦 Como Rodar
