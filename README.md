@@ -12,37 +12,37 @@ Este projeto simula um sistema resiliente de despacho de e-mails. Ele desacopla 
 
 🚀 Principais Funcionalidades
 
-Arquitetura Híbrida: Executa tanto a API REST quanto o Background Service no mesmo processo da aplicação.
+* Arquitetura Híbrida: Executa tanto a API REST quanto o Background Service no mesmo processo da aplicação.
 
-Gerenciamento de Escopos (Scopes): Implementa IServiceScopeFactory para resolver corretamente serviços de escopo (Repositórios/Regra de Negócio) dentro do contexto Singleton do Worker.
+* Gerenciamento de Escopos (Scopes): Implementa IServiceScopeFactory para resolver corretamente serviços de escopo (Repositórios/Regra de Negócio) dentro do contexto Singleton do Worker.
 
-Alta Performance: Utiliza Dapper para execução SQL otimizada e leve.
+* Alta Performance: Utiliza Dapper para execução SQL otimizada e leve.
 
-Zero Configuração de Banco: Inicializa automaticamente o banco de dados SQLite e cria a tabela necessária na inicialização da aplicação.
+* Zero Configuração de Banco: Inicializa automaticamente o banco de dados SQLite e cria a tabela necessária na inicialização da aplicação.
 
 🛠️ Tecnologias Utilizadas
 
-Framework: .NET 8 / ASP.NET
+* Framework: .NET 8 / ASP.NET
 
-CoreBackground Tasks: Microsoft.Extensions.Hosting.BackgroundService
+* CoreBackground Tasks: Microsoft.Extensions.Hosting.BackgroundService
 
-Acesso a Dados: Dapper
+* Acesso a Dados: Dapper
 
-Banco de Dados: SQLite
+* Banco de Dados: SQLite
 
-Injeção de Dependência: Container nativo do .NET
+* Injeção de Dependência: Container nativo do .NET
 
 🏗️ Fluxo da Arquitetura
 
-O cliente faz um POST para /api/Email/Salva-Email.
+* O cliente faz um POST para /api/Email/Salva-Email.
 
-A API salva o registro no banco e retorna 201 Created imediatamente.
+* A API salva o registro no banco e retorna 201 Created imediatamente.
 
-O Worker acorda a cada X segundos (configurável).
+* O Worker acorda a cada X segundos (configurável).
 
-O Worker busca registros onde StatusEnviado é falso.
+* O Worker busca registros onde StatusEnviado é falso.
 
-O Worker processa o envio e atualiza o status no banco.
+* O Worker processa o envio e atualiza o status no banco.
 
 🔌 Endpoints da API
 
@@ -103,14 +103,14 @@ using (var scope = _scopeFactory.CreateScope()) // Cria um escopo temporário
 
 1. Clone o repositório:
 
-git clone https://github.com/seu-usuario/AsyncMailDispatcher.git
+* git clone https://github.com/seu-usuario/AsyncMailDispatcher.git
 
 2. Restaure as dependências:
 
-dotnet restore
+* dotnet restore
 
 3. Execute a aplicação:
 
-dotnet run
+* dotnet run
 
 O arquivo Emails.db será criado automaticamente na pasta raiz.
